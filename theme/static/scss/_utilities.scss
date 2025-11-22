@@ -1,0 +1,47 @@
+/* Utilitários essenciais (escopo controlado) */
+
+.container { width: 100%; margin: 0 auto; padding-left: $space-4; padding-right: $space-4; }
+
+.d-flex { display: flex; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.align-center { align-items: center; }
+
+.rounded { border-radius: $radius-md; }
+.shadow { box-shadow: $shadow-md; }
+.shadow-lg { box-shadow: $shadow-lg; }
+
+.text-white { color: #fff; }
+.text-black { color: #000; }
+.text-gray-300 { color: #d1d5db; }
+.text-gray-400 { color: #9ca3af; }
+.text-slate-900 { color: #0f172a; }
+
+.bg-primary { background: $primary-600; }
+.bg-primary-600 { background: $primary-600; }
+.bg-slate-900 { background: #0f172a; }
+
+.px-4 { padding-left: $space-4; padding-right: $space-4; }
+.py-4 { padding-top: $space-4; padding-bottom: $space-4; }
+.pt-20 { padding-top: 5rem; }
+.p-4 { padding: $space-4; }
+.mt-4 { margin-top: $space-4; }
+.mb-4 { margin-bottom: $space-4; }
+
+.fixed { position: fixed; }
+.relative { position: relative; }
+.top-0 { top: 0; }
+.bottom-6 { bottom: 1.5rem; }
+.right-6 { right: 1.5rem; }
+.z-50 { z-index: 50; }
+
+.hidden { display: none; }
+.block { display: block; }
+
+.transition-all { transition: all 0.2s ease-in-out; }
+.duration-300 { transition-duration: 300ms; }
+.hover\:scale-110:hover { transform: scale(1.1); }
+
+.rounded-full { border-radius: 9999px; }
+
+.group:hover .group-hover\:inline-block { display: inline-block; }

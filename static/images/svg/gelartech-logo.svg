@@ -1,0 +1,54 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="snowflakeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fundo do logo -->
+  <rect x="0" y="0" width="200" height="60" rx="8" fill="url(#logoGradient)" opacity="0.1"/>
+  
+  <!-- Ícone de flocos de neve estilizado -->
+  <g transform="translate(15, 15)">
+    <!-- Floco principal -->
+    <g fill="url(#snowflakeGradient)" stroke="url(#snowflakeGradient)" stroke-width="2">
+      <!-- Linhas principais -->
+      <line x1="15" y1="5" x2="15" y2="25" stroke-linecap="round"/>
+      <line x1="5" y1="15" x2="25" y2="15" stroke-linecap="round"/>
+      <line x1="8.5" y1="8.5" x2="21.5" y2="21.5" stroke-linecap="round"/>
+      <line x1="21.5" y1="8.5" x2="8.5" y2="21.5" stroke-linecap="round"/>
+      
+      <!-- Detalhes decorativos -->
+      <circle cx="15" cy="15" r="3" fill="url(#snowflakeGradient)"/>
+      <circle cx="15" cy="8" r="1.5" fill="url(#snowflakeGradient)"/>
+      <circle cx="15" cy="22" r="1.5" fill="url(#snowflakeGradient)"/>
+      <circle cx="8" cy="15" r="1.5" fill="url(#snowflakeGradient)"/>
+      <circle cx="22" cy="15" r="1.5" fill="url(#snowflakeGradient)"/>
+    </g>
+  </g>
+  
+  <!-- Texto Clima Ar Ne Refrigeração -->
+  <text x="55" y="25" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1e40af">
+    Gelar
+  </text>
+  <text x="55" y="42" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2563eb">
+    Tech
+  </text>
+  
+  <!-- Tagline -->
+  <text x="120" y="20" font-family="Arial, sans-serif" font-size="10" fill="#64748b">
+    REFRIGERAÇÃO
+  </text>
+  <text x="120" y="32" font-family="Arial, sans-serif" font-size="10" fill="#64748b">
+    PROFISSIONAL
+  </text>
+  
+  <!-- Elemento decorativo -->
+  <rect x="115" y="35" width="70" height="1" fill="#e2e8f0"/>
+  <circle cx="185" cy="35.5" r="2" fill="#3b82f6"/>
+</svg>

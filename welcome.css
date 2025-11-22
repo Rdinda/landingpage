@@ -1,0 +1,191 @@
+/* Estilos Gerais */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Header e Hero Section */
+.hero {
+    background-color: #007bff; /* Azul primário */
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+    /* Imagem de fundo sutil para dar um toque profissional */
+    background-image: linear-gradient(rgba(0, 123, 255, 0.85), rgba(0, 123, 255, 0.85)), url('https://picsum.photos/1200/800'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero h1 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.hero p {
+    font-size: 1.3em;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+/* Botões */
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 50px; /* Botões arredondados */
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background-color: #28a745; /* Verde para ação principal */
+    color: white;
+    border: 2px solid #28a745;
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+    border-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+    background-color: #ffc107; /* Amarelo para destaque */
+    color: #333;
+    border: 2px solid #ffc107;
+}
+
+.btn-secondary:hover {
+    background-color: #e0a800;
+    border-color: #e0a800;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Seção de Recursos (Features) */
+.features-section {
+    padding: 80px 0;
+    text-align: center;
+    background-color: white;
+}
+
+.features-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    color: #007bff;
+    font-weight: 700;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.feature-item {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.feature-item h3 {
+    color: #007bff;
+    margin-top: 0;
+    font-weight: 600;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.feature-item p {
+    color: #6c757d;
+}
+
+/* Call to Action Section */
+.cta-section {
+    background-color: #343a40; /* Cinza escuro */
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.cta-section p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+}
+
+/* Footer */
+footer {
+    background-color: #212529; /* Cinza muito escuro */
+    color: #adb5bd;
+    padding: 30px 0;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .hero {
+        padding: 80px 0;
+    }
+
+    .hero h1 {
+        font-size: 2.5em;
+    }
+
+    .hero p {
+        font-size: 1.1em;
+    }
+
+    .features-section {
+        padding: 50px 0;
+    }
+
+    .features-section h2 {
+        font-size: 2em;
+    }
+
+    .cta-section {
+        padding: 70px 0;
+    }
+
+    .cta-section h2 {
+        font-size: 2.2em;
+    }
+
+    .btn {
+        padding: 12px 25px;
+    }
+}

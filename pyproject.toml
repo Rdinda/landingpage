@@ -1,0 +1,13 @@
+[project]
+name = "ar-condicionado"
+version = "0.1.0"
+description = "Clima Ar Ne Refrigeração - Landing Page de Refrigeração Profissional"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "django>=5.2.7",
+    "pillow>=10.0.0",
+    "django-tailwind[cookiecutter,honcho,reload]>=3.8.0",
+    "python-dotenv>=1.0.0",
+    "honcho>=2.0.0",
+]

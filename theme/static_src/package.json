@@ -1,0 +1,12 @@
+{
+  "name": "theme-tailwind",
+  "private": true,
+  "version": "1.0.0",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0"
+  },
+  "scripts": {
+    "build": "tailwindcss -i ./src/styles.css -o ../static/css/dist/styles.css --minify",
+    "start": "tailwindcss -i ./src/styles.css -o ../static/css/dist/styles.css --watch"
+  }
+}

@@ -1,0 +1,499 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    {% if landing_content.hero_imagem %}
+        <link rel="preload" as="image" href="{{ landing_content.hero_imagem.url }}">
+    {% elif DEBUG %}
+        <link rel="preload" as="image" href="{% static 'images/svg/hero-refrigeracao.svg' %}">
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    {% if landing_content.hero_titulo %}{{ landing_content.hero_titulo }} - Clima Ar Ne Refrigeração{% elif DEBUG %}Clima Ar Ne Refrigeração - Refrigeração Profissional{% endif %}
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="inicio" class="text-white py-20 opacity-0 translate-y-6 transition-all duration-500 ease-out" data-animate="fade-up">
+    <div class="w-[90%] mx-auto px-4 bg-black/20 backdrop-blur-sm border border-white/10 rounded-3xl p-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                {% if landing_content.hero_titulo or DEBUG %}
+                <h1 class="text-4xl lg:text-6xl font-bold leading-tight">
+                    {% if landing_content.hero_titulo %}
+                        {{ landing_content.hero_titulo }}
+                    {% elif DEBUG %}
+                        Refrigeração Profissional de Excelência
+                    {% endif %}
+                </h1>
+                {% endif %}
+                {% if landing_content.hero_subtitulo or DEBUG %}
+                <p class="text-xl lg:text-2xl text-primary-100">
+                    {% if landing_content.hero_subtitulo %}
+                        {{ landing_content.hero_subtitulo }}
+                    {% elif DEBUG %}
+                        Soluções completas em climatização e refrigeração para empresas e indústrias. Qualidade garantida.
+                    {% endif %}
+                </p>
+                {% endif %}
+                <div class="flex flex-col sm:flex-row gap-4">
+                    {% if landing_content.hero_cta_texto or DEBUG %}
+                    <a href="#contato" class="border-2 border-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center">
+                        {% if landing_content.hero_cta_texto %}{{ landing_content.hero_cta_texto }}{% elif DEBUG %}Solicitar Orçamento{% endif %}
+                    </a>
+                    {% endif %}
+                    <a href="#servicos" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors text-center">
+                        Nossos Serviços
+                    </a>
+                </div>
+            </div>
+            <div class="relative">
+                {% if landing_content.hero_imagem %}
+                    <img src="{{ landing_content.hero_imagem.url }}" alt="Refrigeração Profissional" class="rounded-lg shadow-2xl" loading="eager" decoding="async" fetchpriority="high">
+                {% elif DEBUG %}
+                    <img src="/static/images/svg/hero-refrigeracao.svg" alt="Refrigeração Profissional Clima Ar Ne Refrigeração" class="rounded-lg shadow-2xl w-full h-96 object-cover" loading="eager" decoding="async" fetchpriority="high">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Serviços Section -->
+<section id="servicos" class="py-20 opacity-0 translate-y-6 transition-all duration-500 ease-out" data-animate="fade-up">
+    <div class="w-[90%] mx-auto px-4 bg-black/10 backdrop-blur-sm border border-white/10 rounded-3xl p-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-white mb-4">Nossos Serviços</h2>
+            <p class="text-xl text-gray-200 max-w-3xl mx-auto">
+                Oferecemos soluções completas em refrigeração e climatização para atender todas as suas necessidades
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for servico in servicos %}
+            <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
+                <div class="text-center mb-6">
+                    {% if servico.icone %}
+                        <img src="{% static 'images/icons/' %}{{ servico.icone }}" alt="{{ servico.titulo }}" class="w-16 h-16 mx-auto mb-4">
+                    {% else %}
+                        <i class="fas fa-snowflake text-primary-600 text-4xl mb-4"></i>
+                    {% endif %}
+                    <h3 class="text-2xl font-semibold text-gray-900">{{ servico.titulo }}</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">{{ servico.descricao }}</p>
+                {% if servico.imagem %}
+                <div class="mt-6">
+                    <img src="{{ servico.imagem.url }}" alt="{{ servico.titulo }}" class="w-full h-48 object-cover rounded-lg" loading="lazy" decoding="async">
+                </div>
+                {% endif %}
+            </div>
+            {% empty %}
+            <!-- Serviços padrão caso não haja no banco -->
+            <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
+                <div class="text-center mb-6">
+                    <img src="/static/images/icons/instalacao.svg" alt="Instalação" class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800">Instalação</h3>
+                </div>
+                <p class="text-gray-600 leading-relaxed">Instalação profissional de sistemas de refrigeração e ar condicionado com garantia de qualidade.</p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
+                <div class="text-center mb-6">
+                    <img src="/static/images/icons/manutencao.svg" alt="Manutenção" class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800">Manutenção</h3>
+                </div>
+                <p class="text-gray-600 leading-relaxed">Manutenção preventiva e corretiva para garantir o funcionamento perfeito dos seus equipamentos.</p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
+                <div class="text-center mb-6">
+                    <img src="/static/images/icons/reparo.svg" alt="Reparo" class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800">Reparo</h3>
+                </div>
+                <p class="text-gray-600 leading-relaxed">Reparo rápido e eficiente de equipamentos de refrigeração com peças originais.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Sobre Section -->
+<section id="sobre" class="py-20 text-white opacity-0 translate-y-6 transition-all duration-500 ease-out" data-animate="fade-up">
+    <div class="w-[90%] mx-auto px-4 bg-black/15 backdrop-blur-sm border border-white/10 rounded-3xl p-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <h2 class="text-4xl font-bold text-white">
+                    {% if landing_content.sobre_titulo %}{{ landing_content.sobre_titulo }}{% elif DEBUG %}Sobre a Clima Ar Ne Refrigeração{% endif %}
+                </h2>
+                <div class="text-lg text-gray-200 leading-relaxed">
+                    {% if landing_content.sobre_texto %}
+                        {{ landing_content.sobre_texto|linebreaks }}
+                    {% elif DEBUG %}
+                        <p>Com mais de 3 anos de experiência no mercado de refrigeração, a Clima Ar Ne Refrigeração se consolidou como referência em soluções profissionais de climatização.</p>
+                        <p>Nossa equipe altamente qualificada oferece serviços completos, desde a instalação até a manutenção de sistemas de refrigeração para empresas de todos os portes.</p>
+                        <p>Trabalhamos com as melhores marcas do mercado e garantimos qualidade, eficiência e durabilidade em todos os nossos projetos.</p>
+                    {% endif %}
+                </div>
+                
+                {% if DEBUG %}
+                <!-- Estatísticas (apenas em debug) -->
+                <div class="grid grid-cols-2 gap-6 mt-8">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-primary-600">15+</div>
+                        <div class="text-gray-200">Anos de Experiência</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-primary-600">500+</div>
+                        <div class="text-gray-200">Projetos Realizados</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-primary-600">24h</div>
+                        <div class="text-gray-200">Suporte Emergencial</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-primary-600">100%</div>
+                        <div class="text-gray-200">Satisfação Garantida</div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="relative">
+                {% if landing_content.sobre_imagem %}
+                    <img src="{{ landing_content.sobre_imagem.url }}" alt="Sobre a Clima Ar Ne Refrigeração" class="rounded-lg shadow-xl" loading="lazy" decoding="async">
+                {% elif DEBUG %}
+                    <img src="/static/images/svg/sobre-empresa.svg" alt="Equipe Clima Ar Ne Refrigeração - 15 anos de experiência" class="rounded-lg shadow-xl w-full h-96 object-cover" loading="lazy" decoding="async">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Estatísticas Section -->
+{% if estatisticas %}
+<section id="estatisticas" class="py-12 opacity-0 translate-y-6 transition-all duration-500 ease-out" data-animate="fade-up">
+    <div class="w-[90%] mx-auto px-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {% for stat in estatisticas %}
+            <div class="bg-white/10 border border-white/10 rounded-2xl p-6 text-center backdrop-blur-sm">
+                <div class="text-3xl md:text-4xl font-extrabold text-white">{{ stat.valor }}</div>
+                <div class="mt-2 text-primary-100 font-medium">{{ stat.titulo }}</div>
+                {% if stat.descricao %}
+                    <div class="mt-1 text-sm text-gray-300">{{ stat.descricao }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </section>
+{% endif %}
+
+<!-- Depoimentos Section -->
+{% if depoimentos %}
+<section id="depoimentos" class="py-20 opacity-0 translate-y-6 transition-all duration-500 ease-out" data-animate="fade-up">
+    <div class="w-[90%] mx-auto px-4 bg-black/10 backdrop-blur-sm border border-white/10 rounded-3xl p-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-white mb-4">O que nossos clientes dizem</h2>
+            <p class="text-xl text-gray-200">Veja os depoimentos de quem confia na Clima Ar Ne Refrigeração</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for depoimento in depoimentos %}
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    {% for i in "12345"|make_list %}
+                        {% if forloop.counter <= depoimento.estrelas %}
+                            <i class="fas fa-star text-yellow-400"></i>
+                        {% else %}
+                            <i class="far fa-star text-gray-300"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <p class="text-gray-600 mb-4 italic">"{{ depoimento.depoimento }}"</p>
+                <div class="border-t pt-4">
+                    <div class="font-semibold text-gray-800">{{ depoimento.nome_cliente }}</div>
+                    {% if depoimento.empresa %}
+                        <div class="text-sm text-gray-500">{{ depoimento.empresa }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Equipe Section -->
+{% if equipe %}
+<section id="equipe" class="py-20 text-white opacity-0 translate-y-6 transition-all duration-500 ease-out" data-animate="fade-up">
+    <div class="w-[90%] mx-auto px-4 bg-black/10 backdrop-blur-sm border border-white/10 rounded-3xl p-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-white mb-4">Nossa Equipe</h2>
+            <p class="text-xl text-gray-200">Profissionais qualificados e experientes</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {% for membro in equipe %}
+            <div class="text-center">
+                {% if membro.foto %}
+                    <img src="{{ membro.foto.url }}" alt="{{ membro.nome }}" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy" decoding="async">
+                {% else %}
+                    <div class="w-32 h-32 rounded-full mx-auto mb-4 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-user text-gray-400 text-4xl"></i>
+                    </div>
+                {% endif %}
+                <h3 class="text-xl font-semibold text-white">{{ membro.nome }}</h3>
+                <p class="text-gray-200">{{ membro.cargo }}</p>
+                {% if membro.bio %}
+                    <p class="text-sm text-gray-500 mt-2">{{ membro.bio }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Contato Section -->
+<section id="contato" class="py-20 text-white opacity-0 translate-y-6 transition-all duration-500 ease-out" data-animate="fade-up">
+    <div class="w-[90%] mx-auto px-4 bg-black/15 backdrop-blur-sm border border-white/10 rounded-3xl p-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4">
+                {% if landing_content.contato_titulo %}{{ landing_content.contato_titulo }}{% elif DEBUG %}Entre em Contato{% endif %}
+            </h2>
+            {% if landing_content.contato_descricao or DEBUG %}
+            <p class="text-xl text-primary-100">
+                {% if landing_content.contato_descricao %}{{ landing_content.contato_descricao }}{% elif DEBUG %}Solicite um orçamento gratuito e sem compromisso{% endif %}
+            </p>
+            {% endif %}
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Formulário -->
+            <div class="bg-white rounded-lg p-8">
+                <form id="contato-form" method="post" action="{% url 'contato_submit' %}" class="space-y-6">
+                    {% csrf_token %}
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="{{ form.nome.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">{{ form.nome.label }}</label>
+                            {{ form.nome }}
+                            <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+                        </div>
+                        <div>
+                            <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">{{ form.email.label }}</label>
+                            {{ form.email }}
+                            <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="{{ form.telefone.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">{{ form.telefone.label }}</label>
+                            {{ form.telefone }}
+                            <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+                        </div>
+                        <div>
+                            <label for="{{ form.empresa.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">{{ form.empresa.label }}</label>
+                            {{ form.empresa }}
+                            <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="{{ form.tipo_servico.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">{{ form.tipo_servico.label }}</label>
+                        {{ form.tipo_servico }}
+                        <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+                    </div>
+                    
+                    <div>
+                        <label for="{{ form.mensagem.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">{{ form.mensagem.label }}</label>
+                        {{ form.mensagem }}
+                        <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-primary-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-primary-700 transition-colors">
+                        Enviar Mensagem
+                    </button>
+                </form>
+                
+                <!-- Mensagens de feedback -->
+                <div id="form-success" class="hidden mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <span class="message"></span>
+                </div>
+                
+                <div id="form-error" class="hidden mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                    <i class="fas fa-exclamation-circle mr-2"></i>
+                    <span class="message"></span>
+                </div>
+            </div>
+            
+            <!-- Informações de contato (editáveis via Admin) -->
+            <div class="space-y-8">
+                <!-- Telefone -->
+                <div class="flex items-start space-x-4">
+                    <div class="bg-primary-500 p-3 rounded-lg">
+                        <i class="fas fa-phone text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Telefone</h3>
+                        <p class="text-primary-100">{{ landing_content.telefone|default:'(11) 99999-9999' }}</p>
+                        <p class="text-primary-100">{{ landing_content.atendimento_emergencias_texto|default:'Atendimento 24h para emergências' }}</p>
+                    </div>
+                </div>
+
+                <!-- WhatsApp -->
+                <div class="flex items-start space-x-4">
+                    <div class="bg-green-500 p-3 rounded-lg">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">WhatsApp</h3>
+                        <a href="{% if landing_content.whatsapp %}https://wa.me/{{ landing_content.whatsapp }}{% elif DEBUG %}https://wa.me/5511999999999{% else %}#{% endif %}" target="_blank" rel="noopener noreferrer" class="text-primary-100 underline">
+                            {% if landing_content.whatsapp %}{{ landing_content.whatsapp }}{% elif DEBUG %}5511999999999{% endif %}
+                        </a>
+                        {% if landing_content.tempo_resposta_texto %}
+                            <p class="text-primary-100">{{ landing_content.tempo_resposta_texto }}</p>
+                        {% elif DEBUG %}
+                            <p class="text-primary-100">Resposta em até 2 horas</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- E-mail -->
+                <div class="flex items-start space-x-4">
+                    <div class="bg-primary-500 p-3 rounded-lg">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">E-mail</h3>
+                        {% if landing_content.email %}
+                            <p class="text-primary-100">{{ landing_content.email }}</p>
+                        {% elif DEBUG %}
+                            <p class="text-primary-100">contato@Clima Ar Ne Refrigeração.com.br</p>
+                        {% endif %}
+                        {% if landing_content.tempo_resposta_texto %}
+                            <p class="text-primary-100">{{ landing_content.tempo_resposta_texto }}</p>
+                        {% elif DEBUG %}
+                            <p class="text-primary-100">Resposta em até 2 horas</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Localização -->
+                <div class="flex items-start space-x-4">
+                    <div class="bg-primary-500 p-3 rounded-lg">
+                        <i class="fas fa-map-marker-alt text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Localização</h3>
+                        {% if landing_content.endereco %}
+                            <p class="text-primary-100">{{ landing_content.endereco }}</p>
+                        {% elif DEBUG %}
+                            <p class="text-primary-100">São Paulo, SP</p>
+                        {% endif %}
+                        {% if landing_content.area_atendimento_texto %}
+                            <p class="text-primary-100">{{ landing_content.area_atendimento_texto }}</p>
+                        {% elif DEBUG %}
+                            <p class="text-primary-100">Atendemos toda a Grande São Paulo</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Horário de Funcionamento (ainda fixo, podemos tornar editável) -->
+                <div class="flex items-start space-x-4">
+                    <div class="bg-primary-500 p-3 rounded-lg">
+                        <i class="fas fa-clock text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Horário de Funcionamento</h3>
+                        {% if landing_content.horario_semana %}
+                            <p class="text-primary-100">{{ landing_content.horario_semana }}</p>
+                        {% elif DEBUG %}
+                            <p class="text-primary-100">Segunda a Sexta: 8h às 18h</p>
+                        {% endif %}
+                        {% if landing_content.horario_sabado %}
+                            <p class="text-primary-100">{{ landing_content.horario_sabado }}</p>
+                        {% elif DEBUG %}
+                            <p class="text-primary-100">Sábado: 8h às 12h</p>
+                        {% endif %}
+                        {% if landing_content.horario_emergencias %}
+                            <p class="text-primary-100">{{ landing_content.horario_emergencias }}</p>
+                        {% elif DEBUG %}
+                            <p class="text-primary-100">Emergências: 24h</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contato-form');
+    const successDiv = document.getElementById('form-success');
+    const errorDiv = document.getElementById('form-error');
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Limpar mensagens anteriores
+        successDiv.classList.add('hidden');
+        errorDiv.classList.add('hidden');
+        document.querySelectorAll('.error-message').forEach(el => {
+            el.classList.add('hidden');
+            el.textContent = '';
+        });
+        
+        // Preparar dados do formulário
+        const formData = new FormData(form);
+        
+        // Enviar via AJAX
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Sucesso
+                successDiv.querySelector('.message').textContent = data.message;
+                successDiv.classList.remove('hidden');
+                form.reset();
+                
+                // Scroll para a mensagem de sucesso
+                successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                // Erros de validação
+                if (data.errors) {
+                    Object.keys(data.errors).forEach(field => {
+                        const fieldElement = document.getElementById('id_' + field);
+                        if (fieldElement) {
+                            const errorElement = fieldElement.parentNode.querySelector('.error-message');
+                            if (errorElement) {
+                                errorElement.textContent = data.errors[field][0];
+                                errorElement.classList.remove('hidden');
+                            }
+                        }
+                    });
+                }
+                
+                errorDiv.querySelector('.message').textContent = data.message;
+                errorDiv.classList.remove('hidden');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            errorDiv.querySelector('.message').textContent = 'Erro ao enviar mensagem. Tente novamente.';
+            errorDiv.classList.remove('hidden');
+        });
+    });
+});
+</script>
+{% endblock %}

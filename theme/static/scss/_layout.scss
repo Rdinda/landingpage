@@ -1,0 +1,19 @@
+/* Layout e Grid simples */
+
+.container { max-width: 1200px; }
+
+.row { display: grid; grid-template-columns: repeat(12, 1fr); gap: $space-4; }
+.g-4 { gap: $space-4; }
+
+.col-12 { grid-column: span 12; }
+.col-6 { grid-column: span 6; }
+.col-4 { grid-column: span 4; }
+.col-3 { grid-column: span 3; }
+
+@include respond(md) {
+  .md\:hidden { display: none; }
+  .md\:flex { display: flex; }
+  .md\:grid { display: grid; }
+  .md\:col-span-2 { grid-column: span 2; }
+  .md\:col-span-4 { grid-column: span 4; }
+}
