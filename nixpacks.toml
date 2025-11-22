@@ -7,8 +7,9 @@ paths = ["/opt/venv/bin"]
 [phases.install]
 cmds = [
   "python -m venv --copies /opt/venv",
-  "/opt/venv/bin/python -m pip install --upgrade pip build setuptools",
-  "/opt/venv/bin/pip install ."
+  "/opt/venv/bin/python -m pip install --upgrade pip",
+  "/opt/venv/bin/pip install uv==0.4.29",
+  "/opt/venv/bin/uv sync --no-dev --frozen"
 ]
 dependsOn = ["setup"]
 
