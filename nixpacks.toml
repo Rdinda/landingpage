@@ -4,6 +4,12 @@ NIXPACKS_UV_VERSION = "0.4.29"
 [phases.setup]
 paths = ["/opt/venv/bin"]
 
+[phases.install]
+cmds = ["pip install --upgrade build setuptools", "pip install ."]
+dependsOn = ["setup"]
+
 [phases.build]
 cmds = ["...", "python manage.py tailwind build", "python manage.py collectstatic --noinput"]
 
+[start]
+cmd = "python manage.py migrate && gunicorn setup.wsgi:application --bind 0.0.0.0:$PORT"
