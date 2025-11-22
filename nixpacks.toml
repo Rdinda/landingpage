@@ -15,7 +15,7 @@ dependsOn = ["setup"]
 
 [phases.build]
 cmds = [
-  "/opt/venv/bin/uv run manage.py collectstatic --noinput"
+  "/opt/venv/bin/uv run python manage.py collectstatic --noinput"
 ]
 
 [start]
