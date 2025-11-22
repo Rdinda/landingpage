@@ -1,0 +1,9 @@
+[variables]
+NIXPACKS_UV_VERSION = "0.4.29"
+
+[phases.setup]
+paths = ["/opt/venv/bin"]
+
+[phases.build]
+cmds = ["...", "python manage.py tailwind build", "python manage.py collectstatic --noinput"]
+
