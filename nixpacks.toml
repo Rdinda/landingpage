@@ -16,6 +16,8 @@ dependsOn = ["setup"]
 
 [phases.build]
 cmds = [
+  "/opt/venv/bin/uv run python manage.py tailwind install",
+  "/opt/venv/bin/uv run python manage.py tailwind build",
   "/opt/venv/bin/uv run python manage.py collectstatic --noinput"
 ]
 
